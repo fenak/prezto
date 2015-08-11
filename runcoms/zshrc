@@ -11,3 +11,22 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+prompt steeef
+
+export EDITOR=vim
+
+alias mc="mc --colors base_color=lightgray,default:normal=lightgray,default:selected=black,green:marked=yellow,default:markselect=white,green:errors=white,red:menu=lightgray,default:reverse=black,lightgray:dnormal=white,default:dfocus=black,green:dhotnormal=brightgreen,default:dhotfocus=brightgreen,green:viewunderline=brightred,default:menuhot=yellow,default:menusel=white,black:menuhotsel=yellow,black:helpnormal=black,lightgray:helpitalic=red,lightgray:helpbold=blue,lightgray:helplink=black,cyan:helpslink=yellow,default:gauge=white,black:input=black,green:directory=white,default:executable=brightgreen,default:link=brightcyan,default:stalelink=brightred,default:device=brightmagenta,default:core=red,default:special=black,default:editnormal=lightgray,default:editbold=yellow,default:editmarked=black,cyan:errdhotnormal=yellow,red:errdhotfocus=yellow,lightgray"
+
+alias bu="bundle update"
+alias bi="bundle install"
+alias be="bundle exec"
+alias ts='tmuxinator start'
+alias tma='tmux attach -d -t'
+alias tmn='tmux new -s $(basename $(pwd))'
+alias tml='tmux list-sessions'
+alias stop_fluentd='sudo launchctl unload /Library/LaunchDaemons/td-agent.plist'
+alias start_fluentd='sudo launchctl load /Library/LaunchDaemons/td-agent.plist'
+alias restart_fluentd='stop_fluentd; start_fluentd'
+
+eval "$(rbenv init -)"
