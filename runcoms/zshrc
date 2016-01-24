@@ -29,4 +29,4 @@ alias restart_fluentd='stop_fluentd; start_fluentd'
 
 eval "$(rbenv init -)"
 
-[ -s "/Users/fnakandakari/.scm_breeze/scm_breeze.sh" ] && source "/Users/fnakandakari/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
