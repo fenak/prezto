@@ -13,19 +13,48 @@ fi
 # Customize to your needs...
 
 export EDITOR=vim
+export TERM=xterm-256color
 
 alias mc="mc --colors base_color=lightgray,default:normal=lightgray,default:selected=black,green:marked=yellow,default:markselect=white,green:errors=white,red:menu=lightgray,default:reverse=black,lightgray:dnormal=white,default:dfocus=black,green:dhotnormal=brightgreen,default:dhotfocus=brightgreen,green:viewunderline=brightred,default:menuhot=yellow,default:menusel=white,black:menuhotsel=yellow,black:helpnormal=black,lightgray:helpitalic=red,lightgray:helpbold=blue,lightgray:helplink=black,cyan:helpslink=yellow,default:gauge=white,black:input=black,green:directory=white,default:executable=brightgreen,default:link=brightcyan,default:stalelink=brightred,default:device=brightmagenta,default:core=red,default:special=black,default:editnormal=lightgray,default:editbold=yellow,default:editmarked=black,cyan:errdhotnormal=yellow,red:errdhotfocus=yellow,lightgray"
+alias vim="nvim"
 
 alias bu="bundle update"
 alias bi="bundle install"
 alias be="bundle exec"
-alias ts='tmuxinator start'
+alias emacs="emacs -nw"
+alias tsj='tmuxinator jora'
+alias tsp='tmuxinator personal'
 alias tma='tmux attach -d -t'
 alias tmn='tmux new -s $(basename $(pwd))'
 alias tml='tmux list-sessions'
 alias stop_fluentd='sudo launchctl unload /Library/LaunchDaemons/td-agent.plist'
 alias start_fluentd='sudo launchctl load /Library/LaunchDaemons/td-agent.plist'
 alias restart_fluentd='stop_fluentd; start_fluentd'
+
+alias start_kafka='kafka-server-start /usr/local/etc/kafka/server.properties'
+alias start_zookeeper='zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties'
+
+export GOROOT=/usr/local/go
+export GOPATH=$GOROOT/bin
+export PATH=$PATH:$GOPATH
+
+_tmuxinator() {
+  local commands jora
+  personal=(${(f)"$(ls ~/code/fenak)"})
+  jora=(${(f)"$(ls ~/code/jobseekerltd)"})
+  case $words[2] in
+    personal)
+      _describe -t jora "tmuxinator personal" personal && return 0
+      ;;
+    jora)
+      _describe -t jora "tmuxinator jora" jora && return 0
+      ;;
+  esac
+  return
+}
+compdef _tmuxinator tmuxinator mux
+
+setopt HUP # tmux not detaching stuff
 
 eval "$(rbenv init -)"
 
